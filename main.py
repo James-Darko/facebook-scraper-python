@@ -21,14 +21,19 @@ user_agents = [
 
 try:
     proxy = sys.argv[4]
-    facebook_scraper.set_proxy(proxy)
+    facebook_scraper.set_proxy("http://209.205.212.34:1205")
+    # facebook_scraper.set_proxy(proxy)
     print("facebook-scraper-python v2")
     command = sys.argv[1]
     if command == "feed":
         username = sys.argv[2]
         limit = int(sys.argv[3])
-
-        # facebook_scraper.set_cookies(_scraper.session.cookies)
+        cookies = {
+            'c_user': "100085031296303",
+            "xs": "18%3Azc1VkQWpSd-VfA%3A2%3A1661877613%3A-1%3A-1%3A%3AAcUsQNlzCx9LtzFJKEb4hZJ7sg0f8QLTuuFI4ChMWg"
+        }
+        facebook_scraper.enable_logging()
+        facebook_scraper.set_cookies(cookies)
         facebook_scraper.set_user_agent(random.choice(user_agents))
         posts = facebook_scraper.get_posts(account=username, options={"reactions": True})
         # for post in posts:
@@ -53,7 +58,7 @@ try:
     else:
         print("unknown command: " + command)
         exit(1)
-
 except requests.exceptions.ProxyError as err:
     print(err)
     exit(2)
+print("done")
