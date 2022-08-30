@@ -23,7 +23,7 @@ try:
     proxy = sys.argv[4]
     # facebook_scraper.set_proxy("http://209.205.212.34:1207")
     facebook_scraper.set_proxy(proxy)
-    print("facebook-scraper-python v3")
+    print("facebook-scraper-python v4 - " + proxy)
     command = sys.argv[1]
     if command == "feed":
         # username = "bobshideout"
