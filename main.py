@@ -22,15 +22,14 @@ user_agents = [
 try:
     proxy = sys.argv[4]
     facebook_scraper.set_proxy(proxy)
-    print("facebook-scraper-python v1")
+    print("facebook-scraper-python v2")
     command = sys.argv[1]
     if command == "feed":
         username = sys.argv[2]
         limit = int(sys.argv[3])
 
-
         # facebook_scraper.set_cookies(_scraper.session.cookies)
-        # facebook_scraper.set_user_agent(random.choice(user_agents))
+        facebook_scraper.set_user_agent(random.choice(user_agents))
         posts = facebook_scraper.get_posts(account=username, options={"reactions": True})
         # for post in posts:
         #     print(post)
