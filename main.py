@@ -1,13 +1,12 @@
 import facebook_scraper
+from facebook_scraper import _scraper
 import sys
 import json
 import requests.exceptions
 import random
 
-
 def to_json(dict_var):
     return json.dumps(dict_var, default=str)
-
 
 if len(sys.argv) != 5:
     print("ERROR: wrong number of arguments")
@@ -23,13 +22,18 @@ user_agents = [
 try:
     proxy = sys.argv[4]
     facebook_scraper.set_proxy(proxy)
-
+    print("facebook-scraper-python v1")
     command = sys.argv[1]
     if command == "feed":
         username = sys.argv[2]
         limit = int(sys.argv[3])
-        facebook_scraper.set_user_agent(random.choice(user_agents))
+
+
+        # facebook_scraper.set_cookies(_scraper.session.cookies)
+        # facebook_scraper.set_user_agent(random.choice(user_agents))
         posts = facebook_scraper.get_posts(account=username, options={"reactions": True})
+        # for post in posts:
+        #     print(post)
         with open(username + ".txt", "w") as f:
             count = 0
             for post in posts:
@@ -51,5 +55,6 @@ try:
         print("unknown command: " + command)
         exit(1)
 
-except requests.exceptions.ProxyError:
+except requests.exceptions.ProxyError as err:
+    print(err)
     exit(2)
