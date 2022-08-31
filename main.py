@@ -9,7 +9,7 @@ version = 6
 def to_json(dict_var):
     return json.dumps(dict_var, default=str)
 
-if len(sys.argv) < 5:
+if len(sys.argv) < 5 and sys.argv[1] != "version":
     print("ERROR: wrong number of arguments")
     exit(1)
 
@@ -24,6 +24,8 @@ try:
     proxy = sys.argv[4]
     facebook_scraper.set_proxy(proxy)
     print(f"facebook-scraper-python v{version} - {sys.argv[2]} - {proxy}")
+    if len(sys.argv) == 6 and sys.argv[5] == "log":
+        facebook_scraper.enable_logging()
     command = sys.argv[1]
     if command == "feed":
         username = sys.argv[2]
@@ -32,8 +34,7 @@ try:
             'c_user': "100085031296303",
             "xs": "33%3AY7qIgbn2DfWJww%3A2%3A1661882317%3A-1%3A-1"
         }
-        if len(sys.argv) == 6 and sys.argv[6] == "log":
-            facebook_scraper.enable_logging()
+
         facebook_scraper.set_cookies(cookies)
         facebook_scraper.set_user_agent(random.choice(user_agents))
         posts = facebook_scraper.get_posts(account=username, options={"reactions": True})
