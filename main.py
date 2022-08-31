@@ -34,7 +34,6 @@ try:
             'c_user': "100085031296303",
             "xs": "33%3AY7qIgbn2DfWJww%3A2%3A1661882317%3A-1%3A-1"
         }
-
         facebook_scraper.set_cookies(cookies)
         facebook_scraper.set_user_agent(random.choice(user_agents))
         posts = facebook_scraper.get_posts(account=username, options={"reactions": True})
