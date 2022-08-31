@@ -65,9 +65,9 @@ try:
         exit(1)
 except requests.exceptions.ProxyError as err:
     print("=================== proxy error ===================")
-    print(err.args[0])
     if err.request.url == "https://facebook.com/settings":
         exit(3)
     if err.request.url == "http://lumtest.com/myip.json":
         exit(3)
+    print(err.args[0])
     exit(2)
