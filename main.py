@@ -4,7 +4,7 @@ import json
 import requests.exceptions
 import random
 
-version = 6
+version = 7
 
 def to_json(dict_var):
     return json.dumps(dict_var, default=str)
@@ -66,7 +66,7 @@ try:
 except requests.exceptions.ProxyError as err:
     print("=================== proxy error ===================")
     print(err.args[0])
-    if err.request.path_url == "/settings?_rdr":
+    if err.request.url == "https://facebook.com/settings":
         exit(3)
     if err.request.url == "http://lumtest.com/myip.json":
         exit(3)
