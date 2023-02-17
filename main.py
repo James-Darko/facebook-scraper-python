@@ -37,8 +37,8 @@ try:
         username = sys.argv[2]
         limit = int(sys.argv[3])
         cookies = {
-            'c_user': "100085031296303",
-            "xs": "33%3AY7qIgbn2DfWJww%3A2%3A1661882317%3A-1%3A-1"
+            'c_user': "100090247007641",
+            "xs": "14%3ALKkqzOtpkFwBPQ%3A2%3A1676654307%3A-1%3A-1"
         }
         facebook_scraper.set_cookies(cookies)
         facebook_scraper.set_user_agent(random.choice(user_agents))
@@ -69,5 +69,15 @@ except requests.exceptions.ProxyError as err:
         exit(3)
     if err.request.url == "http://lumtest.com/myip.json":
         exit(3)
+    print(err.args[0])
+    exit(2)
+except requests.exceptions as err:
+    print("=================== requests error ===================")
+    print(err)
+    print(err.args[0])
+    print(err.request.url)
+    exit(2)
+except Exception as err:
+    print("other error")
     print(err.args[0])
     exit(2)
