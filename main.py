@@ -40,7 +40,7 @@ try:
             'c_user': "100090247007641",
             "xs": "14%3ALKkqzOtpkFwBPQ%3A2%3A1676654307%3A-1%3A-1"
         }
-        facebook_scraper.set_cookies(cookies)
+        # facebook_scraper.set_cookies(cookies)
         facebook_scraper.set_user_agent(random.choice(user_agents))
         posts = facebook_scraper.get_posts(account=username, options={"reactions": True})
         with open(username + ".txt", "w") as f:
